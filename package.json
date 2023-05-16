@@ -10,9 +10,12 @@
     "@types/react": "^18.2.6",
     "@types/react-dom": "^18.2.4",
     "babel-loader": "^9.1.2",
+    "css-loader": "^6.7.3",
     "html-webpack-plugin": "^5.5.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-icons": "^4.8.0",
+    "style-loader": "^3.3.2",
     "ts-loader": "^9.4.2",
     "typescript": "^5.0.4",
     "webpack": "^5.82.1",
@@ -27,7 +30,6 @@
   "description": "<img src=\"https://t4.ftcdn.net/jpg/02/78/37/47/360_F_278374738_ypRn0utOVnebuhmpSrDiwkzFsdqEm0aa.jpg\" width=\"100%\"/>\r <h1 align=\"center\">Hi 👋, I'm Deepak Mandal </h1>\r <h3 align=\"center\">A passionate Full Stack Web Developer from India</h3>",
   "version": "1.0.0",
   "main": "index.js",
-  "devDependencies": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Deepumandal/Portfolio-backOffice.git"

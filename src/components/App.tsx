@@ -1,14 +1,22 @@
 import React from 'react'
-import { Button } from '@mui/material';
+import { Box, Button } from '@mui/material';
+import SideBar from './SideBar';
+import Editor from './Editor';
 
 const App = () => {
     return (
-        <div>App
-            <br />
-            <Button variant="text">Text</Button>
-            <Button variant="contained">Contained</Button>
-            <Button variant="outlined">Outlined</Button>
-        </div>
+        <Box sx={{
+            margin: 0,
+            padding: 0,
+            height: "100vh",
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            overflow: 'hidden'
+        }}>
+            <SideBar />
+            <Editor />
+        </Box>
     )
 }
 
