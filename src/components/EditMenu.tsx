@@ -1,5 +1,6 @@
 import { Box } from '@mui/material'
 import React from 'react'
+import HomeEditPanel from './HomeEditPanel'
 
 const EditMenu = () => {
     return (
@@ -11,7 +12,9 @@ const EditMenu = () => {
             boxShadow: 'rgba(149, 157, 165, 0.2) 0px 8px 24px',
             height: '80vh',
             padding: '20px',
-        }}>EditMenu</Box>
+        }}>
+            <HomeEditPanel />
+        </Box>
     )
 }
 
