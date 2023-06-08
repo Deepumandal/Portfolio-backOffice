@@ -2,6 +2,9 @@ import { Avatar, Grid, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { RxCross1 } from "react-icons/rx";
 import AddLink from "../../components/AddLink";
+// import { useSelector } from "react-redux";
+// import { RootState } from "../../redux/reduxStore";
+import { homeReducerInitialState } from "../../redux/home_old/homeReducer";
 
 const SocialLinks = () => {
   interface link {
@@ -10,11 +13,9 @@ const SocialLinks = () => {
     avatarPath: string;
   }
 
-  const [links, setLinks] = useState<link[]>([]);
-
-  useEffect(() => {
-    console.log("Social Links", links);
-  }, [links]);
+  // const homeData = useSelector<RootState>(
+  //   (state) => state.home
+  // ) as homeReducerInitialState;
 
   return (
     <React.Fragment>
@@ -22,7 +23,7 @@ const SocialLinks = () => {
         <Typography variant="h6">Social links</Typography>
       </Grid>
       <Grid item xs={12}>
-        {links?.map((link, index) => {
+        {/* {homeData.socialMediaLinks.map((link, index) => {
           return (
             <Grid item xs={5}>
               <Grid
@@ -58,8 +59,8 @@ const SocialLinks = () => {
                     padding: "10px",
                   }}
                 >
-                  <Typography padding={0}> {link.title}</Typography>
-                  <Typography padding={0}> {link.linkPath}</Typography>
+                  <Typography padding={0}> {link.name}</Typography>
+                  <Typography padding={0}> {link.avatarPath}</Typography>
                 </Grid>
                 <Grid
                   item
@@ -80,10 +81,10 @@ const SocialLinks = () => {
               </Grid>
             </Grid>
           );
-        })}
+        })} */}
 
         <Grid item xs={6}>
-          <AddLink links={links} setLinks={setLinks} />
+          <AddLink />
         </Grid>
       </Grid>
     </React.Fragment>

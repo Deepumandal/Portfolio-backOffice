@@ -1,7 +1,7 @@
 import { Box } from '@mui/material'
 import React from 'react'
-import Navbar from './Navbar'
-import EditMenu from './EditMenu'
+import Navbar from '../navbar/Navbar'
+import EditMenu from '../EditMenu/EditMenu'
 
 const Editor = () => {
     return (

@@ -7,17 +7,23 @@
     "@emotion/react": "^11.11.0",
     "@emotion/styled": "^11.11.0",
     "@mui/material": "^5.13.0",
+    "@reduxjs/toolkit": "^1.9.5",
+    "@types/axios": "^0.14.0",
     "@types/react": "^18.2.6",
     "@types/react-dom": "^18.2.4",
+    "@types/redux-thunk": "^2.1.0",
+    "axios": "^1.4.0",
     "babel-loader": "^9.1.2",
     "css-loader": "^6.7.3",
+    "dotenv": "^16.1.4",
     "html-webpack-plugin": "^5.5.1",
+    "path": "^0.12.7",
+    "process": "^0.11.10",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.8.0",
     "react-redux": "^8.0.7",
-    "redux": "^4.2.1",
-    "redux-thunk": "^2.4.2",
+    "redux-devtools-extension": "^2.13.9",
     "style-loader": "^3.3.2",
     "ts-loader": "^9.4.2",
     "typescript": "^5.0.4",
@@ -43,5 +49,8 @@
   "bugs": {
     "url": "https://github.com/Deepumandal/Portfolio-backOffice/issues"
   },
-  "homepage": "https://github.com/Deepumandal/Portfolio-backOffice#readme"
+  "homepage": "https://github.com/Deepumandal/Portfolio-backOffice#readme",
+  "devDependencies": {
+    "dotenv-webpack": "^8.0.1"
+  }
 }

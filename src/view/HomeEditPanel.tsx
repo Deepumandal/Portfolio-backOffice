@@ -13,9 +13,13 @@ import {
   TextField,
   TextareaAutosize,
 } from "@mui/material";
-import BasicDetails from "./BasicDetails";
-import WhatIDo from "./WhatIDo";
-import HomePreview from "./HomePreview";
+import BasicDetails from "../components/BasicDetails";
+import WhatIDo from "../components/WhatIDo";
+import HomePreview from "../components/HomePreview";
+import { fetchAllData } from "../redux/home_old/Actions";
+// import { useDispatch } from "react-redux";
+// import { AppDispatch } from "../redux/reduxStore";
+import { homeActionType } from "../types/types";
 
 const steps = ["Basic Details", "What I Do", "Submission"];
 
@@ -69,6 +73,11 @@ export default function HomeEditPanel() {
     setCompleted({});
   };
 
+  // const dispatch = useDispatch();
+  React.useEffect(() => {
+    // dispatch(fetchAllData());
+    // fetchAllData(dispatch());
+  }, []);
   return (
     <Box
       sx={{

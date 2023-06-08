@@ -13,6 +13,8 @@ import {
   Typography,
 } from "@mui/material";
 import React, { ChangeEvent, useRef, useState } from "react";
+// import { useDispatch } from "react-redux";
+import { PostSocialAvatar } from "../api/PostSocialAvatar";
 
 interface link {
   title: String;
@@ -20,11 +22,7 @@ interface link {
   avatarPath: string;
 }
 
-interface AddLinkProps {
-  links: link[];
-  setLinks: React.Dispatch<React.SetStateAction<link[]>>;
-}
-const AddLink: React.FC<AddLinkProps> = ({ links, setLinks }) => {
+const AddLink: React.FC = () => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -55,20 +53,25 @@ const AddLink: React.FC<AddLinkProps> = ({ links, setLinks }) => {
     avatarPath: dummyImageUrl,
   });
 
+  // const dispatch = useDispatch();
+
   const onchangelinks = (event: ChangeEvent<HTMLInputElement>) => {
     if (event.target.type == "file") {
       // file saves here
       if (event.target.files && event.target.files.length > 0) {
         let file = event.target.files?.[0];
+        PostSocialAvatar(file).then((response) => {
+          console.log("response", response);
+          setQuerry((prev) => {
+            return {
+              ...prev,
+              avatarPath: response.fileUrl,
+            };
+          });
+        });
         // make a function here that once image
         //  is uploaded then setQuerry should be occur so
         // make the backend first to got from here
-        setQuerry((prev) => {
-          return {
-            ...prev,
-            avatarPath: file.name,
-          };
-        });
       }
     } else {
       // title and url here
@@ -84,23 +87,24 @@ const AddLink: React.FC<AddLinkProps> = ({ links, setLinks }) => {
 
   const handleSubmit = () => {
     // setLinks((prev)=>  [...prev, ] )
-    setLinks((prev) => {
-      return [
-        ...prev,
-        {
-          _id: prev?.length + 1 || 0,
-          ...querry,
-        },
-      ];
-    });
-    setQuerry((prev) => {
-      return {
-        ...prev,
-        avatarPath: dummyImageUrl,
-        linkPath: "",
-        title: "",
-      };
-    });
+    // setLinks((prev) => {
+    //   return [
+    //     ...prev,
+    //     {
+    //       _id: prev?.length + 1 || 0,
+    //       ...querry,
+    //     },
+    //   ];
+    // });
+    // setQuerry((prev) => {
+    //   return {
+    //     ...prev,
+    //     avatarPath: dummyImageUrl,
+    //     linkPath: "",
+    //     title: "",
+    //   };
+    // });
+    // dispatch event to say that okay i have my full dataset
     handleClose();
   };
   return (

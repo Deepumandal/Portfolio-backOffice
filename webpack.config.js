@@ -1,6 +1,10 @@
 const path = require("path");
 const htmlWebpackPlugin = require("html-webpack-plugin");
+const webpack = require("webpack");
 
+// dotenv configuration settings
+const dotenv = require("dotenv").config({ path: __dirname + "/.env" });
+const isProduction = process.env.NODE_ENV === "production";
 module.exports = {
   resolve: {
     extensions: [".js", ".jsx", ".ts", ".tsx"],
@@ -12,6 +16,15 @@ module.exports = {
   plugins: [
     new htmlWebpackPlugin({
       template: "./src/index.html",
+    }),
+    new webpack.ProvidePlugin({
+      process: "process/browser",
+    }),
+    new webpack.DefinePlugin({
+      "process.env": JSON.stringify({
+        ...dotenv.parsed,
+        NODE_ENV: JSON.stringify(isProduction ? "production" : "development"),
+      }),
     }),
   ],
   module: {
