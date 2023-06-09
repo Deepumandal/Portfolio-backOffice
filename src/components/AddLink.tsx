@@ -13,11 +13,12 @@ import {
   Typography,
 } from "@mui/material";
 import React, { ChangeEvent, useRef, useState } from "react";
-// import { useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { PostSocialAvatar } from "../api/PostSocialAvatar";
+import { addSocialLink } from "../redux/home/homeReducer";
 
 interface link {
-  title: String;
+  name: String;
   linkPath: String;
   avatarPath: string;
 }
@@ -48,12 +49,12 @@ const AddLink: React.FC = () => {
   // data fill here
 
   const [querry, setQuerry] = useState<link>({
-    title: "",
+    name: "",
     linkPath: "",
     avatarPath: dummyImageUrl,
   });
 
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   const onchangelinks = (event: ChangeEvent<HTMLInputElement>) => {
     if (event.target.type == "file") {
@@ -69,9 +70,6 @@ const AddLink: React.FC = () => {
             };
           });
         });
-        // make a function here that once image
-        //  is uploaded then setQuerry should be occur so
-        // make the backend first to got from here
       }
     } else {
       // title and url here
@@ -86,30 +84,17 @@ const AddLink: React.FC = () => {
   };
 
   const handleSubmit = () => {
-    // setLinks((prev)=>  [...prev, ] )
-    // setLinks((prev) => {
-    //   return [
-    //     ...prev,
-    //     {
-    //       _id: prev?.length + 1 || 0,
-    //       ...querry,
-    //     },
-    //   ];
-    // });
-    // setQuerry((prev) => {
-    //   return {
-    //     ...prev,
-    //     avatarPath: dummyImageUrl,
-    //     linkPath: "",
-    //     title: "",
-    //   };
-    // });
-    // dispatch event to say that okay i have my full dataset
+    dispatch(addSocialLink(querry));
+    setQuerry({
+      avatarPath: dummyImageUrl,
+      name: "",
+      linkPath: "",
+    });
     handleClose();
   };
   return (
     <div>
-      <Button onClick={handleOpen}>Open modal</Button>
+      <Button onClick={handleOpen}> Add Link</Button>
       <Modal
         open={open}
         onClose={handleClose}
@@ -157,7 +142,7 @@ const AddLink: React.FC = () => {
               <TextField
                 required
                 id="Name"
-                name="title"
+                name="name"
                 label="Link Name"
                 fullWidth
                 autoComplete="given-name"
@@ -167,15 +152,11 @@ const AddLink: React.FC = () => {
               {/* image here */}
               <Grid container spacing={2} alignItems="center">
                 <Grid item xs={3}>
-                  {querry.avatarPath === dummyImageUrl ? (
-                    <Avatar
-                      src={querry.avatarPath}
-                      onClick={() => inputFileRef.current?.click()} // Trigger file input click
-                      style={{ cursor: "pointer" }}
-                    />
-                  ) : (
-                    <Avatar src={querry.avatarPath} />
-                  )}
+                  <Avatar
+                    src={querry.avatarPath}
+                    onClick={() => inputFileRef.current?.click()} // Trigger file input click
+                    style={{ cursor: "pointer" }}
+                  />
                   <input
                     type="file"
                     name="avatarPath"

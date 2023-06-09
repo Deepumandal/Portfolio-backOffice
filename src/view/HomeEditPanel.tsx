@@ -17,9 +17,14 @@ import BasicDetails from "../components/BasicDetails";
 import WhatIDo from "../components/WhatIDo";
 import HomePreview from "../components/HomePreview";
 import { fetchAllData } from "../redux/home_old/Actions";
-// import { useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 // import { AppDispatch } from "../redux/reduxStore";
 import { homeActionType } from "../types/types";
+import {
+  SocialMediaRecord,
+  fetchAllUser,
+  greetingOptions,
+} from "../redux/home/homeReducer";
 
 const steps = ["Basic Details", "What I Do", "Submission"];
 
@@ -73,9 +78,9 @@ export default function HomeEditPanel() {
     setCompleted({});
   };
 
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   React.useEffect(() => {
-    // dispatch(fetchAllData());
+    dispatch(fetchAllUser() as any);
     // fetchAllData(dispatch());
   }, []);
   return (

@@ -1,33 +1,16 @@
 import { Button, Grid, Stack, TextField, Typography } from "@mui/material";
 import React, { ChangeEvent, useEffect, useRef, useState } from "react";
 import PopUpPrompt from "../atom/PopUpPrompt";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  addBasicInformations,
+  homeReducerInitialState,
+} from "../../redux/home/homeReducer";
+import { RootState } from "../../redux/reduxStore";
 
-const InsertLineBreakRegex = /(\r\n|\r|\n)/;
-
-interface UserBasicInformation {
-  Name: string;
-  nickName: string;
-  logoName?: string;
-  Description: string;
-}
-
-interface BasicInformationProps {
-  getBasicInformation: (props: UserBasicInformation) => void;
-}
-
-const BasicInformation: React.FC<BasicInformationProps> = ({
-  getBasicInformation,
-}) => {
-  //   basic information useState
-  const [basicInformation, setBasicInformation] =
-    useState<UserBasicInformation>({
-      Name: "",
-      nickName: "",
-      logoName: "",
-      Description: "",
-    });
-
+const BasicInformation = () => {
   const debounceTimer = useRef<any>(null);
+  const dispatch = useDispatch();
 
   const handleOnChangeName = (event: ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
@@ -36,10 +19,7 @@ const BasicInformation: React.FC<BasicInformationProps> = ({
       clearTimeout(debounceTimer.current);
     }
     debounceTimer.current = setTimeout(() => {
-      setBasicInformation((prevState) => ({
-        ...prevState,
-        [name]: value,
-      }));
+      dispatch(addBasicInformations({ [name]: value }));
     }, 500);
   };
   useEffect(() => {
@@ -49,9 +29,10 @@ const BasicInformation: React.FC<BasicInformationProps> = ({
       }
     };
   }, []);
-  useEffect(() => {
-    getBasicInformation(basicInformation);
-  }, [basicInformation]);
+
+  const state = useSelector<RootState>(
+    (state) => state.homeReducer
+  ) as homeReducerInitialState;
 
   return (
     <React.Fragment>
@@ -67,7 +48,7 @@ const BasicInformation: React.FC<BasicInformationProps> = ({
                 required
                 id="Name"
                 name="Name"
-                label="Portfolio Name"
+                label={`${state.greeting.Name || "User Name"}`}
                 fullWidth
                 autoComplete="given-name"
                 variant="standard"
@@ -83,7 +64,7 @@ const BasicInformation: React.FC<BasicInformationProps> = ({
                     required
                     id="Nickname"
                     name="nickName"
-                    label="Nick Name"
+                    label={`${state.greeting.nickName || "Nick Name"}`}
                     fullWidth
                     autoComplete="given-name"
                     variant="standard"
@@ -96,7 +77,7 @@ const BasicInformation: React.FC<BasicInformationProps> = ({
                   <TextField
                     id="LogoName"
                     name="logoName"
-                    label="Logo Name"
+                    label={`${state.greeting.logoName || "Logo Name"}`}
                     fullWidth
                     autoComplete="given-name"
                     variant="standard"
@@ -115,7 +96,7 @@ const BasicInformation: React.FC<BasicInformationProps> = ({
                 multiline
                 id="Description"
                 name="Description"
-                label="Description"
+                label={`${state.greeting.Description || "Description"}`}
                 fullWidth
                 autoComplete="given-name"
                 placeholder="Click enter for new line"

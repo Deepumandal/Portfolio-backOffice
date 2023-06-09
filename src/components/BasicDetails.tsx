@@ -21,12 +21,6 @@ interface UserBasicInformation {
 }
 
 const BasicDetails = () => {
-  const getBasicInformation = (obj: UserBasicInformation) => {
-    // here will get the basic information
-    console.log("basicInformation", obj);
-  };
-  const getSocialLinks = () => {};
-
   return (
     <Box
       sx={{
@@ -37,7 +31,7 @@ const BasicDetails = () => {
       }}
     >
       <Grid container rowGap={1}>
-        <BasicInformation getBasicInformation={getBasicInformation} />
+        <BasicInformation />
         <SocialLinks />
       </Grid>
     </Box>

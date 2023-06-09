@@ -21,8 +21,6 @@ const initialState: SideBarInitialStateType = {
     ],
     selectedPageName: SideBarPayloadPageNameEnum.HOME
 };
-
-
 const sideBarReducer = createSlice({
     name: 'sidebarReducer',
     initialState: initialState,
